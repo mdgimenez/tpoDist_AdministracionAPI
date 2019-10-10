@@ -4,43 +4,43 @@
 		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="commons-logging-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/commons-logging-1.1.1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="hibernate-commons-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/hibernate-commons-annotations.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="javassist-3.4.GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/javassist-3.4.GA.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="json-simple-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/json-simple-1.1.1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/dom4j-1.6.1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="hibernate3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/hibernate3.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jta-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/jta-1.1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="AdministracionAD.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/AdministracionAD/AdministracionAD">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="commons-collections-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/commons-collections-3.1.jar">
+        <dependent-module archiveName="commons-collections-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/commons-collections-3.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="hibernate-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/hibernate-annotations.jar">
+        <dependent-module archiveName="jta-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/jta-1.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="antlr-2.7.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/antlr-2.7.6.jar">
+        <dependent-module archiveName="commons-logging-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/commons-logging-1.1.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="jtds-1.2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/jtds-1.2.5.jar">
+        <dependent-module archiveName="ejb3-persistence.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/ejb3-persistence.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ejb3-persistence.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Maru/Desktop/TPO_V13/Librerias/lib/ejb3-persistence.jar">
+        <dependent-module archiveName="hibernate-commons-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/hibernate-commons-annotations.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/hibernate3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jtds-1.2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/jtds-1.2.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/dom4j-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-simple-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/json-simple-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javassist-3.4.GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/javassist-3.4.GA.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-annotations.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/hibernate-annotations.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="antlr-2.7.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/B:/Archivos UADE/10 cuatrimestre/Aplicaciones Distribuidas/TPO/lib/antlr-2.7.6.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
 		<property name="java-output-path" value="target/classes"/>
