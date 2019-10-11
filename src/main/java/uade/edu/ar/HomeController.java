@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -52,14 +53,13 @@ public class HomeController {
 	}
 	
 	//http://websystique.com/java/json/jackson-convert-java-map-to-from-json/
-	@RequestMapping(value = "/VerReclamo", method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/VerReclamo", method = RequestMethod.GET)
 	@ResponseBody
-	public String verReclamo(@RequestBody String idReclamo) throws ReclamoException {
+	public String verReclamo(@RequestParam(value="id", required=true) int id) throws ReclamoException {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			Map<String, Object> r = mapper.readValue(idReclamo, new TypeReference<Map<String, Object>>() { } );
 			ReclamoView rw = new ReclamoView();
-			rw = Controlador.getInstancia().buscarReclamo((Integer)r.get("idReclamo"));
+			rw = Controlador.getInstancia().buscarReclamo(id);
 			return mapper.writeValueAsString(rw);
 		} catch (Exception e) {
 			throw new ReclamoException("No se pudo recuperar el Reclamo");
