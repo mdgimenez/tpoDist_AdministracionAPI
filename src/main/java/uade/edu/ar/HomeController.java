@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -23,8 +24,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import controlador.Controlador;
+import exceptions.EdificioException;
 import exceptions.ReclamoException;
 import exceptions.UsuarioException;
+import views.EdificioView;
+import views.PersonaView;
 import views.ReclamoView;
 import views.UsuarioView;
 
@@ -57,10 +61,21 @@ public class HomeController {
 	@ResponseBody
 	public String verReclamo(@RequestParam(value="id", required=true) int id) throws ReclamoException {
 		try {
+			String response;
+			String aux;
 			ObjectMapper mapper = new ObjectMapper();
-			ReclamoView rw = new ReclamoView();
-			rw = Controlador.getInstancia().buscarReclamo(id);
-			return mapper.writeValueAsString(rw);
+			HashMap<String, String> hash_map = new HashMap<String, String>();
+			ReclamoView rv = Controlador.getInstancia().buscarReclamo(id);
+			EdificioView ev = Controlador.getInstancia().buscarEdificioReclamo(rv.getCodigoEdificio());
+			PersonaView pv = Controlador.getInstancia().buscarPersonaReclamo(rv.getDocumentoPersona());
+			hash_map.put("edificio", ev.getNombre());
+			hash_map.put("persona", pv.getNombre());
+			response = mapper.writeValueAsString(rv); 
+			response = response.substring(0, response.length() - 1);
+			aux = mapper.writeValueAsString(hash_map);
+			aux = aux.substring(1, aux.length());
+			response += "," + aux; 
+			return response;
 		} catch (Exception e) {
 			throw new ReclamoException("No se pudo recuperar el Reclamo");
 		}
@@ -90,7 +105,6 @@ public class HomeController {
 			List<ReclamoView> reclamos = new ArrayList<ReclamoView>();
 			
 			reclamos = Controlador.getInstancia().buscarTodosLosReclamos();
-			System.out.println(mapper.writeValueAsString(reclamos));
 			
 			return mapper.writeValueAsString(reclamos);
 		} catch (Exception e) {
