@@ -24,7 +24,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import controlador.Controlador;
-import exceptions.EdificioException;
 import exceptions.ReclamoException;
 import exceptions.UsuarioException;
 import views.EdificioView;
