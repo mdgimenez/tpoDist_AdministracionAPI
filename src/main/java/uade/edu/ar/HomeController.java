@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -55,6 +53,7 @@ public class HomeController {
 		return "home";
 	}
 	
+	/** OK */
 	//http://websystique.com/java/json/jackson-convert-java-map-to-from-json/
 	@RequestMapping(value = "/VerReclamo", method = RequestMethod.GET)
 	@ResponseBody
@@ -80,22 +79,21 @@ public class HomeController {
 		}
 	}
 	
-	@RequestMapping(value = "/VerReclamos", method = RequestMethod.POST, headers = "Accept=application/json")
+	/** OK */
+	@RequestMapping(value = "/VerReclamos", method = RequestMethod.GET)
 	@ResponseBody
-	public String verReclamos(@RequestBody String documento) throws ReclamoException {
+	public String verReclamos(@RequestParam(value="id", required=true) int id) throws ReclamoException {
 		try {
-			ObjectMapper mapper = new ObjectMapper();
-			Map<String, Object> r = mapper.readValue(documento, new TypeReference<Map<String, Object>>() { } );
+			ObjectMapper mapper = new ObjectMapper();			
 			List<ReclamoView> reclamos = new ArrayList<ReclamoView>();
-			
-			reclamos = Controlador.getInstancia().buscarReclamosAsociados((String) r.get("documento"));
-			
+			reclamos = Controlador.getInstancia().buscarReclamosAsociados(id);
 			return mapper.writeValueAsString(reclamos);
 		} catch (Exception e) {
 			throw new ReclamoException("No se pudo recuperar los Reclamos asociados");
 		}
 	}
 	
+	/** TO DELETE */
 	@RequestMapping(value = "/VerTodosLosReclamos", method = RequestMethod.GET, headers = "Accept=application/json")
 	@ResponseBody
 	public String verTodosLosReclamos() throws ReclamoException {
@@ -111,7 +109,7 @@ public class HomeController {
 		}
 	}
 	
-	
+	/** TO DO */
 	@RequestMapping(value = "/AltaReclamo", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public String altaReclamo(@RequestBody String reclamoJson) throws ReclamoException {
