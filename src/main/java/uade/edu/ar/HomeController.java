@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import controlador.Controlador;
+import exceptions.EdificioException;
 import exceptions.ReclamoException;
 import exceptions.UsuarioException;
 import views.EdificioView;
@@ -137,37 +138,63 @@ public class HomeController {
 		
 	}*/
 	
-	@RequestMapping(value = "/AltaUsuario", method = RequestMethod.POST, headers = "Accept=application/json")
+	/** OK */
+	@RequestMapping(value = "/AltaUsuario", method = RequestMethod.POST)
 	@ResponseBody
-	public String altaUsuario(@RequestBody String usuarioJson) throws UsuarioException {
+	public String altaUsuario(@RequestParam(value="usuario", required=true) String usuario, @RequestParam(value="password", required=true) String password) throws UsuarioException {
 		try {
-			UsuarioView uw = new UsuarioView();
+			UsuarioView uv = new UsuarioView(usuario, password);
 			ObjectMapper mapper = new ObjectMapper();
-			uw = mapper.readValue(usuarioJson, UsuarioView.class);
-			try {
-				return mapper.writeValueAsString(Controlador.getInstancia().registrarUsuario(uw));
-			} catch (Exception e) {
-				throw new UsuarioException("No se pudo registrar el Usuario");
-			}
+			return mapper.writeValueAsString(Controlador.getInstancia().registrarUsuario(uv));
 		} catch (Exception e) {
 			throw new UsuarioException("No se pudo registrar el Usuario");
 		}
 	}
 	
-	@RequestMapping(value = "/AutenticarUsuario", method = RequestMethod.POST, headers = "Accept=application/json")
+	/** OK */
+	@RequestMapping(value = "/AutenticarUsuario", method = RequestMethod.POST)
 	@ResponseBody
-	public String autenticacionUsuario(@RequestBody String usuarioJson) throws UsuarioException {
+	public String autenticacionUsuario(@RequestParam(value="usuario", required=true) String usuario, @RequestParam(value="password", required=true) String password) throws UsuarioException {
 		try {
-			UsuarioView uw = new UsuarioView();
+			UsuarioView uv = new UsuarioView(usuario, password);
 			ObjectMapper mapper = new ObjectMapper();
-			uw = mapper.readValue(usuarioJson, UsuarioView.class);
-			try {
-				return mapper.writeValueAsString(Controlador.getInstancia().autenticarUsuario(uw));
-			} catch (Exception e) {
-				throw new UsuarioException("No se pudo autenticar el Usuario");
-			}
+			return mapper.writeValueAsString(Controlador.getInstancia().autenticarUsuario(uv));
 		} catch (Exception e) {
 			throw new UsuarioException("No se pudo autenticar el Usuario");
+		}
+	}
+	
+	/** OK */
+	@RequestMapping(value = "/VerEdificios", method = RequestMethod.GET)
+	@ResponseBody
+	public String verEdificios(@RequestParam(value="id", required=true) int id) throws EdificioException {
+		try {
+			List<EdificioView> ev = Controlador.getInstancia().buscarEdificiosAsociados(id);
+			ObjectMapper mapper = new ObjectMapper();
+			return mapper.writeValueAsString(ev);
+		} catch (Exception e) {
+			throw new EdificioException("No se pudieron obtener los edificios");
+		}
+	}
+	
+	@RequestMapping(value = "/VerPisosEdificio", method = RequestMethod.GET)
+	@ResponseBody
+	public String verPisosEdificio(@RequestParam(value="id", required=true) int id) throws EdificioException {
+		try {
+			return Controlador.getInstancia().traerPisos(id).toString();
+		} catch (Exception e) {
+			throw new EdificioException("No se pudieron obtener los edificios");
+		}
+	}
+	
+	/** TO TEST */
+	@RequestMapping(value = "/VerUnidadesUsuario", method = RequestMethod.GET)
+	@ResponseBody
+	public String verUnidadesUsuario(@RequestParam(value="id", required=true) int id, @RequestParam(value="edificioId", required=true) int edificioId, @RequestParam(value="piso", required=true) int piso) throws EdificioException {
+		try {
+			return Controlador.getInstancia().traerUnidades(id, edificioId, String.valueOf(piso)).toString();
+		} catch (Exception e) {
+			throw new EdificioException("No se pudieron obtener los edificios");
 		}
 	}
 }
