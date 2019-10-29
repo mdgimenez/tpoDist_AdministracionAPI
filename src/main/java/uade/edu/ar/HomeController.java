@@ -113,13 +113,13 @@ public class HomeController {
 	/** TO DO */
 	@RequestMapping(value = "/AltaReclamo", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
-	public String altaReclamo(@RequestBody String reclamoJson) throws ReclamoException {
+	public String altaReclamo(@RequestBody String reclamoJson) throws ReclamoException, UsuarioException {
 		try {
-			ReclamoView rw = new ReclamoView();
+			Controlador cont = Controlador.getInstancia();
 			ObjectMapper mapper = new ObjectMapper();
-			rw = mapper.readValue(reclamoJson, ReclamoView.class);
+			ReclamoView rv = mapper.readValue(reclamoJson, ReclamoView.class);
 			try {
-				return mapper.writeValueAsString(Controlador.getInstancia().crearReclamo(rw));
+				return mapper.writeValueAsString(cont.crearReclamo(rv));
 			} catch (ReclamoException e) {
 				throw new ReclamoException("No se pudo guardar el Reclamo");
 			}
@@ -158,7 +158,9 @@ public class HomeController {
 		try {
 			UsuarioView uv = new UsuarioView(usuario, password);
 			ObjectMapper mapper = new ObjectMapper();
-			return mapper.writeValueAsString(Controlador.getInstancia().autenticarUsuario(uv));
+			HashMap<String, Integer> id = new HashMap<String, Integer>();
+			id.put("id", Controlador.getInstancia().autenticarUsuario(uv));
+			return mapper.writeValueAsString(id);
 		} catch (Exception e) {
 			throw new UsuarioException("No se pudo autenticar el Usuario");
 		}
@@ -179,9 +181,9 @@ public class HomeController {
 	
 	@RequestMapping(value = "/VerPisosEdificio", method = RequestMethod.GET)
 	@ResponseBody
-	public String verPisosEdificio(@RequestParam(value="id", required=true) int id) throws EdificioException {
+	public String verPisosEdificio(@RequestParam(value="id", required=true) int id, @RequestParam(value="edificioId", required=true) int edificioId) throws EdificioException {
 		try {
-			return Controlador.getInstancia().traerPisos(id).toString();
+			return Controlador.getInstancia().traerPisos(id, edificioId).toString();
 		} catch (Exception e) {
 			throw new EdificioException("No se pudieron obtener los edificios");
 		}
