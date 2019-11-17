@@ -25,6 +25,7 @@ import controlador.Controlador;
 import exceptions.EdificioException;
 import exceptions.ReclamoException;
 import exceptions.UsuarioException;
+import modelo.Imagen;
 import views.EdificioView;
 import views.PersonaView;
 import views.ReclamoView;
@@ -133,6 +134,30 @@ public class HomeController {
 		return ""; //Cambiar por devolver el id de reclamo
 	}
 	
+	/** TO DO */
+	@RequestMapping(value = "/GuardarImagen", method = RequestMethod.POST, headers = "Accept=application/json")
+	@ResponseBody
+	public void guardarImagen(@RequestBody String imagenJson) {
+		try {
+			Controlador cont = Controlador.getInstancia();
+			ObjectMapper mapper = new ObjectMapper();
+			//imagenJson = imagenJson.substring(10, imagenJson.length()-1);
+			Imagen i = mapper.readValue(imagenJson, Imagen.class);
+			try {
+				cont.guardarImagen(i);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/*@RequestMapping(value = "/ActualizarEstadoReclamo", method = RequestMethod.GET)
 	public String reclamo(Locale locale, Model model) {
 		
@@ -179,6 +204,7 @@ public class HomeController {
 		}
 	}
 	
+	/** OK */
 	@RequestMapping(value = "/VerPisosEdificio", method = RequestMethod.GET)
 	@ResponseBody
 	public String verPisosEdificio(@RequestParam(value="id", required=true) int id, @RequestParam(value="edificioId", required=true) int edificioId) throws EdificioException {
@@ -189,7 +215,7 @@ public class HomeController {
 		}
 	}
 	
-	/** TO TEST */
+	/** OK */
 	@RequestMapping(value = "/VerUnidadesUsuario", method = RequestMethod.GET)
 	@ResponseBody
 	public String verUnidadesUsuario(@RequestParam(value="id", required=true) int id, @RequestParam(value="edificioId", required=true) int edificioId, @RequestParam(value="piso", required=true) int piso) throws EdificioException {
