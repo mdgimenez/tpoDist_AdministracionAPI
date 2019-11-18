@@ -95,23 +95,7 @@ public class HomeController {
 		}
 	}
 	
-	/** TO DELETE */
-	@RequestMapping(value = "/VerTodosLosReclamos", method = RequestMethod.GET, headers = "Accept=application/json")
-	@ResponseBody
-	public String verTodosLosReclamos() throws ReclamoException {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			List<ReclamoView> reclamos = new ArrayList<ReclamoView>();
-			
-			reclamos = Controlador.getInstancia().buscarTodosLosReclamos();
-			
-			return mapper.writeValueAsString(reclamos);
-		} catch (Exception e) {
-			throw new ReclamoException("No se pudo recuperar los Reclamos asociados");
-		}
-	}
-	
-	/** TO DO */
+	/** OK */
 	@RequestMapping(value = "/AltaReclamo", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public String altaReclamo(@RequestBody String reclamoJson) throws ReclamoException, UsuarioException {
@@ -134,7 +118,7 @@ public class HomeController {
 		return ""; //Cambiar por devolver el id de reclamo
 	}
 	
-	/** TO DO */
+	/** OK */
 	@RequestMapping(value = "/GuardarImagen", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public void guardarImagen(@RequestBody String imagenJson) {
